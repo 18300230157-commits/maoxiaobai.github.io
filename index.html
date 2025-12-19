@@ -1,0 +1,43 @@
+<!-- index.html - 主入口文件 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂互动APP - 原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/custom.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-8">
+    <div class="mode-switch">
+        <button id="switchMode" class="gradient-purple hover:opacity-90 text-white px-4 py-2 btn-rounded shadow-lg transition">
+            <i class="fas fa-user-graduate mr-2"></i>切换到学生端
+        </button>
+    </div>
+    
+    <div class="iphone-frame">
+        <div class="iphone-screen">
+            <div class="notch"></div>
+            <iframe id="mainFrame" class="main-iframe" src="teacher/home.html"></iframe>
+        </div>
+    </div>
+
+    <script>
+        let isTeacher = true;
+        document.getElementById('switchMode').addEventListener('click', function() {
+            isTeacher = !isTeacher;
+            const frame = document.getElementById('mainFrame');
+            const btn = document.getElementById('switchMode');
+            if (isTeacher) {
+                frame.src = 'teacher/home.html';
+                btn.innerHTML = '<i class="fas fa-user-graduate mr-2"></i>切换到学生端';
+            } else {
+                frame.src = 'student/home.html';
+                btn.innerHTML = '<i class="fas fa-chalkboard-teacher mr-2"></i>切换到教师端';
+            }
+        });
+    </script>
+</body>
+</html>
+
